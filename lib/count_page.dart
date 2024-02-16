@@ -528,7 +528,7 @@ Widget buildButton({required IconData icon, required VoidCallback onPressed}) {
       backgroundColor: const Color.fromARGB(255, 111, 67, 192),
       title: Center(
         child: Text(
-          'LED Matrix Display',
+          'LED Matrix',
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
