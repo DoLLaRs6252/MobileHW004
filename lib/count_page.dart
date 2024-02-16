@@ -44,21 +44,20 @@ class _CountPageState extends State<CountPage> {
                   color: Color.fromARGB(255, 0, 0, 0),
                   boxShadow: [
                     BoxShadow(
-                      color: const Color.fromARGB(118, 0, 0, 0).withOpacity(
-                          0.3), 
-                      spreadRadius: 5, 
+                      color:
+                          const Color.fromARGB(118, 0, 0, 0).withOpacity(0.3),
+                      spreadRadius: 5,
                       blurRadius: 20,
-                      offset: Offset(0,
-                          3),
+                      offset: Offset(0, 3),
                     ),
                   ],
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _buildDigit((number ~/ 10) % 10), 
+                    _buildDigit((number ~/ 10) % 10),
                     SizedBox(width: 30.0),
-                    _buildDigit(number % 10), 
+                    _buildDigit(number % 10),
                   ],
                 ),
               ),
@@ -97,9 +96,7 @@ class _CountPageState extends State<CountPage> {
     List<bool> pattern = _getDigitPattern(digit);
     return Row(
       children: [
-        for (var i = 0; i < 5; i++)
-          _buildDot(
-              pattern[i * 7 + rowIndex]), 
+        for (var i = 0; i < 5; i++) _buildDot(pattern[i * 7 + rowIndex]),
       ],
     );
   }
@@ -309,7 +306,7 @@ class _CountPageState extends State<CountPage> {
         true,
         false,
         false
-      ], 
+      ],
       // 5
       [
         true,
@@ -385,7 +382,7 @@ class _CountPageState extends State<CountPage> {
         true,
         true,
         false
-      ], 
+      ],
       // 7
       [
         true,
@@ -423,7 +420,7 @@ class _CountPageState extends State<CountPage> {
         false,
         false,
         false
-      ], 
+      ],
       // 8
       [
         false,
@@ -461,7 +458,7 @@ class _CountPageState extends State<CountPage> {
         true,
         true,
         false
-      ], 
+      ],
       // 9
       [
         false,
@@ -504,27 +501,28 @@ class _CountPageState extends State<CountPage> {
     return patterns[digit];
   }
 
-  Widget buildButton(
-      {required IconData icon, required VoidCallback onPressed}) {
-    return Container(
+Widget buildButton({required IconData icon, required VoidCallback onPressed}) {
+  return Container(
+    child: Ink(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle, // กำหนดให้รูปร่างเป็นวงกลม
+        color: Color.fromARGB(255, 255, 255, 255),
+      ),
       child: InkWell(
         onTap: onPressed,
+        borderRadius: BorderRadius.circular(44.0), // กำหนดให้ขอบเป็นวงกลม
         child: Container(
           width: 88.0,
           height: 88.0,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: Color.fromARGB(255, 255, 255, 255),
-          ),
           child: Icon(
             icon,
             size: 80.0,
           ),
         ),
       ),
-    );
-  }
-
+    ),
+  );
+}
   AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: const Color.fromARGB(255, 111, 67, 192),
