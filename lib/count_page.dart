@@ -42,12 +42,23 @@ class _CountPageState extends State<CountPage> {
                     width: 10.0,
                   ),
                   color: Color.fromARGB(255, 0, 0, 0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color.fromARGB(118, 0, 0, 0).withOpacity(
+                          0.3), 
+                      spreadRadius: 5, 
+                      blurRadius: 20,
+                      offset: Offset(0,
+                          3),
+                    ),
+                  ],
                 ),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _buildDigit((number ~/ 10) % 10), // tens digit
-                    _buildDigit(number % 10), // ones digit
+                    _buildDigit((number ~/ 10) % 10), 
+                    SizedBox(width: 30.0),
+                    _buildDigit(number % 10), 
                   ],
                 ),
               ),
@@ -73,7 +84,6 @@ class _CountPageState extends State<CountPage> {
 
   Widget _buildDigit(int digit) {
     return Container(
-      margin: const EdgeInsets.all(0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -82,108 +92,413 @@ class _CountPageState extends State<CountPage> {
       ),
     );
   }
-Widget _buildRow(int rowIndex, int digit) {
-  List<bool> pattern = _getDigitPattern(digit);//0
-  return Row(
-    children: [
-      for (var i = 0; i < 5; i++)
-        _buildDot(pattern[i  *7+ rowIndex]), // Adjusting index to match pattern
-    ],
-  );
-}
+
+  Widget _buildRow(int rowIndex, int digit) {
+    List<bool> pattern = _getDigitPattern(digit);
+    return Row(
+      children: [
+        for (var i = 0; i < 5; i++)
+          _buildDot(
+              pattern[i * 7 + rowIndex]), 
+      ],
+    );
+  }
 
   Widget _buildDot(bool isActive) {
     return Container(
-      width: 16,
-      height: 16,
-      margin: const EdgeInsets.all(3),
+      width: 18,
+      height: 18,
+      margin: const EdgeInsets.all(2),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: isActive ? const Color.fromARGB(255, 178, 255, 89) : Color.fromARGB(255, 51, 51, 51),
+        color: isActive
+            ? const Color.fromARGB(255, 178, 255, 89)
+            : Color.fromARGB(255, 51, 51, 51),
       ),
     );
   }
+
   List<bool> _getDigitPattern(int digit) {
     List<List<bool>> patterns = [
       // 0
       [
-        false,true,true,true,true,true,false,
-        true,false,false,false,false,false,true,
-        true,false,false,false,false,false,true,
-        true,false,false,false,false,false,true,
-        false,true,true,true,true,true,false,
-      ], 
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+      ],
       // 1
       [
-        false, false, false, false, false, false, false,
-        false, true, false, false, false, false, true,
-        true, true, true, true, true, true, true,
-        false, false, false, false, false, false, true,
-        false, false, false, false, false, false, false,
-      ],  // row 7
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+      ], // row 7
       // 2
       [
-        false, true, false, false, false, false, true,
-        true, false, false, false, false, true, true,
-        true, false, false, false, true, false, true,
-        true, false, false, true, false, false, true,
-        false, true, true, false, false, false, true
-      ],  // row 7
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        true
+      ], // row 7
       // 3
       [
-        false, true, false, false, false, true, false,
-        true, false, false, true, false, false, true,
-        true, false, false, true, false, false, true,
-        true, false, false, true, false, false, true,
-        false, true, true, false, true, true, false
+        false,
+        true,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        true,
+        true,
+        false,
+        true,
+        true,
+        false
       ], // row 7
       // 4
-       [
-        false, false, false, true, true, false, false,
-        false, false, true, false, true, false, false,
-        false, true, false, false, true, false, false,
-        true, true, true, true, true, true, true,
-        false, false, false, false, true, false, false
-      ], // row 7
+      [
+        false,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false
+      ], 
       // 5
-       [
-        true, true, true, false, false, true, false,
-        true, false, true, false, false, false, true,
-        true, false, true, false, false, false, true,
-        true, false, true, false, false, false, true,
-        true, false, false, true, true, true, false
+      [
+        true,
+        true,
+        true,
+        false,
+        false,
+        true,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        true,
+        true,
+        true,
+        false
       ],
       // 6
       [
-        false, true, true, true, true, true, false,
-        true, false, false, true, false, false, true,
-        true, false, false, true, false, false, true,
-        true, false, false, true, false, false, true,
-        false, true, false, false, true, true, false
-      ],  // row 7
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        true,
+        true,
+        false
+      ], 
       // 7
-       [
-        true, false, false, false, false, false, false,
-        true, false, false, false, true, true, true,
-        true, false, false, true, false, false, false,
-        true, false, true, false, false, false, false,
-        true, true, false, false, false, false, false
-      ], // row 7
+      [
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false
+      ], 
       // 8
-       [
-        false, true, true, false, true, true, false,
-        true, false, false, true, false, false, true,
-        true, false, false, true, false, false, true,
-        true, false, false, true, false, false, true,
-        false, true, true, false, true, true, false
-      ], // row 7
+      [
+        false,
+        true,
+        true,
+        false,
+        true,
+        true,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        true,
+        true,
+        false,
+        true,
+        true,
+        false
+      ], 
       // 9
-       [
-        false, true, true, false, false, true, false,
-        true, false, false, true, false, false, true,
-        true, false, false, true, false, false, true,
-        true, false, false, true, false, false, true,
-        false, true, true, true, true, true, false
+      [
+        false,
+        true,
+        true,
+        false,
+        false,
+        true,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true,
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false
       ],
     ];
     return patterns[digit];
@@ -195,8 +510,8 @@ Widget _buildRow(int rowIndex, int digit) {
       child: InkWell(
         onTap: onPressed,
         child: Container(
-          width: 80.0,
-          height: 80.0,
+          width: 88.0,
+          height: 88.0,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: Color.fromARGB(255, 255, 255, 255),
@@ -209,19 +524,19 @@ Widget _buildRow(int rowIndex, int digit) {
       ),
     );
   }
+
   AppBar _buildAppBar() {
-  return AppBar(
-    backgroundColor: const Color.fromARGB(255,111, 67, 192),
-    title: Center(
-      child: Text(
-        'LED Matrix Display',
-        style: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
+    return AppBar(
+      backgroundColor: const Color.fromARGB(255, 111, 67, 192),
+      title: Center(
+        child: Text(
+          'LED Matrix Display',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
-    ),
-  );
-}
-
+    );
+  }
 }
