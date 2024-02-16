@@ -210,9 +210,18 @@ Widget _buildRow(int rowIndex, int digit) {
     );
   }
   AppBar _buildAppBar() {
-    return AppBar(
-      backgroundColor: Colors.transparent,
-      
-      );
-  }
+  return AppBar(
+    backgroundColor: const Color.fromARGB(255,111, 67, 192),
+    title: Center(
+      child: Text(
+        'LED Matrix Display',
+        style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    ),
+  );
+}
+
 }
